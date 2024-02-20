@@ -1,0 +1,51 @@
+﻿<header style="background-color: #333; color: #fff; text-align: center; padding: 10px 0;">
+    <h1>Course List</h1>
+</header>
+
+<main style="max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+
+    <a href="/courses/add" style="display: block; margin-bottom: 15px;">Add A Course</a>
+    @if (Model.isTeacher)
+    {
+        <a href="/courses/new" style="display: block; margin-bottom: 15px;">Add New Course</a>
+    }
+
+    <h2 style="color: #333;">Courses</h2>
+
+    @foreach (var course in Model.courses)
+    {
+        <div style="display: flex; justify-content: space-between; align-items: center; background-color: #eee; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+            <div style="flex-grow: 1;">@course.Name - @course.TeacherName</div>
+            <a href="/courses/@course.Id/students">
+                @if (Model.isTeacher)
+                {
+                    <button style="background-color: #0096c7; color: #fff; border: none; padding: 8px 12px; cursor: pointer; border-radius: 3px; transition: background-color 0.3s; margin-right: 10px">
+                        Students
+                    </button>
+                }
+            </a>
+            <button style="background-color: #dc3545; color: #fff; border: none; padding: 8px 12px; cursor: pointer; border-radius: 3px; transition: background-color 0.3s;"
+                    onclick="deleteCourse('@course.Id')">
+                Delete
+            </button>
+        </div>
+    }
+</main>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    function deleteCourse(courseId) {
+        if (confirm('Are you sure you want to delete this course?')) {
+            $.ajax({
+                url: '/Courses/' + courseId,
+                type: 'DELETE',
+                success: function (result) {
+                    console.log('Course deleted successfully');
+                },
+                error: function (error) {
+                    console.error('Error deleting course', error);
+                }
+            });
+        }
+    }
+</script>
