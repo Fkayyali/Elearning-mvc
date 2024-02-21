@@ -48,7 +48,7 @@ namespace Service
                 .Select(uc => uc.User)
                 .Where(u => u.Role.Name == "Student")
                 .ToListAsync();
-
+            
             var filteredStudents = await dBContext.Users.Where(u => !students.Contains(u) && u.Role.Name == "Student").ToListAsync();
             return filteredStudents;    
         }

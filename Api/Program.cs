@@ -1,6 +1,8 @@
+using Api.Filters;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Service;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
