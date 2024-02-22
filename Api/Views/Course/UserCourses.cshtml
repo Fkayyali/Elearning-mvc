@@ -5,19 +5,19 @@
 <main style="max-width: 800px; margin: 20px auto; padding: 20px; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 5px;">
 
     <a href="/courses/add" style="display: block; margin-bottom: 15px;">Add A Course</a>
-    @if (Model.isTeacher)
+    @if (Model.IsTeacher)
     {
         <a href="/courses/new" style="display: block; margin-bottom: 15px;">Add New Course</a>
     }
 
     <h2 style="color: #333;">Courses</h2>
 
-    @foreach (var course in Model.courses)
+    @foreach (var course in Model.Courses)
     {
         <div style="display: flex; justify-content: space-between; align-items: center; background-color: #eee; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
             <div style="flex-grow: 1;">@course.Name - @course.TeacherName</div>
             <a href="/courses/@course.Id/students">
-                @if (Model.isTeacher)
+                @if (Model.IsTeacher)
                 {
                     <button style="background-color: #0096c7; color: #fff; border: none; padding: 8px 12px; cursor: pointer; border-radius: 3px; transition: background-color 0.3s; margin-right: 10px">
                         Students

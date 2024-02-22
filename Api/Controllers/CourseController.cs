@@ -1,4 +1,5 @@
 ﻿using Api.Filters;
+using Api.ViewModels;
 using Entity.DTOs;
 using Entity.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -30,8 +31,8 @@ namespace Api.Controllers
             int userId = tokenService.GetUserId(token);
             var user = await userRepo.GetUser(userId);
             var courses = await coursesRepo.GetCourses(userId);
-
-            return View(new {courses = courses, isTeacher = user.Role.Name == "Teacher"});
+            CoursesViewModel viewModel = new CoursesViewModel { Courses = courses, IsTeacher = user.Role.Name == "Teacher" };
+            return View(viewModel);
         }
 
         [TypeFilter(typeof(TokenValidationFilterAttribute))]
@@ -90,16 +91,18 @@ namespace Api.Controllers
             var token = Request.Cookies["token"];
             int userId = tokenService.GetUserId(token);
             var students = await userRepo.GetStudents(courseId);
-            return View(new { students= students, courseId= courseId});
+            StudentsViewModel viewModel = new StudentsViewModel { CourseId = courseId, Students = students };
+            return View(viewModel);
         }
 
         [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpDelete("/courses/{courseId}/students/{studentId}")]
-        public async Task<IActionResult> DeleteStudent(int courseId, int studentId)
+        public async Task<IActionResult> ViewStudents(int courseId, int studentId)
         {
             await userCourseRepo.RemoveUserCourse(studentId, courseId);
             var students = await userRepo.GetStudents(courseId);
-            return View(new { students = students, courseId = courseId });
+            StudentsViewModel viewModel = new StudentsViewModel { CourseId = courseId, Students = students };
+            return View(viewModel);
         }
 
         [TypeFilter(typeof(TokenValidationFilterAttribute))]
@@ -107,7 +110,8 @@ namespace Api.Controllers
         public async Task<IActionResult> AddStudent(int courseId)
         {
             var filteredUsers = await userRepo.GetFilteredUsers(courseId);
-            return View(new { filteredUsers = filteredUsers, courseId = courseId});
+            AddStudentViewModel viewModel = new AddStudentViewModel { CourseId = courseId, FilteredStudents = filteredUsers };
+            return View(viewModel);
         }
 
         [TypeFilter(typeof(TokenValidationFilterAttribute))]
@@ -116,7 +120,8 @@ namespace Api.Controllers
         {
             await userCourseRepo.AddUserCourse(studentId, courseId);
             var filteredUsers = await userRepo.GetFilteredUsers(courseId);
-            return View(new { filteredUsers = filteredUsers, courseId = courseId });
+            AddStudentViewModel viewModel = new AddStudentViewModel { CourseId = courseId, FilteredStudents = filteredUsers };
+            return View(viewModel);
         }
     }
 }

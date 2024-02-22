@@ -28,7 +28,10 @@ namespace Api.Controllers
         public async Task<IActionResult> Index(LoginDto loginDto)
         {
             var user = await userRepo.GetUser(loginDto.Email, loginDto.Password);   
-            if (user == null) { return  View("Error"); }
+            if (user == null) {
+                ModelState.AddModelError("", "Invalid username or password.");
+                return  View();
+            }
             var token = tokenService.CreateToken(user);
             //CookieOptions cookie = new CookieOptions();
             Response.Cookies.Append("token", token);

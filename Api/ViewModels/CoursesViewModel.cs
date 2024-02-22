@@ -1,6 +1,10 @@
-﻿using Entity.Models;
+﻿using Entity.DTOs;
 
-public class CoursesViewModel
+namespace Api.ViewModels
 {
-    public List<Course> Courses { get; set; }
+    public class CoursesViewModel
+    {
+        public List<CourseTeacherDto> Courses { get; set; } = [];
+        public bool IsTeacher { get; set; } = false;
+    }
 }
