@@ -14,7 +14,7 @@ namespace Data.Configurations
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasOne<University>(user => user.University).WithMany(university => university.Users).HasForeignKey(user => user.UniverstityId);
+            builder.HasOne<University>(user => user.University).WithMany(university => university.Users).HasForeignKey(user => user.UniversityId);
             builder.HasOne<Role>(user => user.Role).WithMany(role => role.Users).HasForeignKey(user => user.RoleId);
 
             //builder.HasMany<UserCourse>(s => s.UserCourses);

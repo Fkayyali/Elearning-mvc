@@ -24,7 +24,7 @@ namespace Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Id", "Email", "FirstName", "LastName", "PasswordHash", "RoleId", "UniversityId", "UniverstityId" },
+                columns: new[] { "Id", "Email", "FirstName", "LastName", "PasswordHash", "RoleId", "UniversityId", "UniversityId" },
                 values: new object[,]
                 {
                     { 1, "Ali@gmail.com", "Ali", "Yousef", "123", 1, null, 1 },

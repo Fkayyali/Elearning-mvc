@@ -16,7 +16,7 @@ namespace Entity.Models
         public string? PasswordHash { get; set; }
         public int RoleId { get; set; }
         public Role? Role { get; set; }
-        public int? UniverstityId { get; set; }
+        public int? UniversityId { get; set; }
         public University? University { get; set; }
         public List<UserCourse>? UserCourses { get; set; }
     }

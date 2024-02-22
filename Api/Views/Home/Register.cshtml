@@ -1,0 +1,69 @@
+﻿@model Entity.DTOs.RegisterDto
+
+<h2>Sign Up</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input asp-for="Password" class="form-control" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RoleId"></label>
+        <select asp-for="RoleId" asp-items="@GetRoles()" class="form-control">
+            <option value=""></option>
+        </select>
+        <span asp-validation-for="RoleId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="UniversityId"></label>
+        <select asp-for="UniversityId" asp-items="@GetUniversities()" class="form-control">
+            <option value=""></option>
+        </select>
+        <span asp-validation-for="UniversityId" class="text-danger"></span>
+    </div>
+
+    <br />
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+@functions {
+    private List<SelectListItem> GetRoles()
+    {
+        return new List<SelectListItem>
+        {
+            new SelectListItem { Value = "1", Text = "Student" },
+            new SelectListItem { Value = "2", Text = "Teacher" }
+        };
+    }
+    private List<SelectListItem> GetUniversities()
+    {
+        return new List<SelectListItem>
+        {
+            new SelectListItem { Value = "1", Text = "JU" },
+            new SelectListItem { Value = "2", Text = "JUST" }
+        };
+    }
+}

@@ -1,4 +1,5 @@
 ﻿using Data;
+using Entity.DTOs;
 using Entity.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -53,5 +54,22 @@ namespace Service
             return filteredStudents;    
         }
 
+        public async Task<User> AddUser(RegisterDto registerDto)
+        {
+            User newUser = new User
+            {
+                FirstName = registerDto.FirstName,
+                LastName = registerDto.LastName,
+                Email = registerDto.Email,
+                PasswordHash = registerDto.Password,
+                RoleId = registerDto.RoleId,
+                UniversityId = registerDto.UniversityId,
+            };
+
+            var user = await dBContext.Users.AddAsync(newUser);
+            await dBContext.SaveChangesAsync();
+
+            return user.Entity;
+        }
     }
 }

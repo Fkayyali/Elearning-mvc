@@ -164,7 +164,7 @@ namespace Data.Migrations
                     b.Property<int?>("UniversityId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UniverstityId")
+                    b.Property<int?>("UniversityId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -184,7 +184,7 @@ namespace Data.Migrations
                             LastName = "Yousef",
                             PasswordHash = "123",
                             RoleId = 1,
-                            UniverstityId = 1
+                            UniversityId = 1
                         },
                         new
                         {
@@ -194,7 +194,7 @@ namespace Data.Migrations
                             LastName = "Ahmed",
                             PasswordHash = "123",
                             RoleId = 1,
-                            UniverstityId = 1
+                            UniversityId = 1
                         },
                         new
                         {
@@ -204,7 +204,7 @@ namespace Data.Migrations
                             LastName = "Tamer",
                             PasswordHash = "123",
                             RoleId = 2,
-                            UniverstityId = 1
+                            UniversityId = 1
                         },
                         new
                         {
@@ -214,7 +214,7 @@ namespace Data.Migrations
                             LastName = "Saed",
                             PasswordHash = "123",
                             RoleId = 1,
-                            UniverstityId = 1
+                            UniversityId = 1
                         },
                         new
                         {
@@ -224,7 +224,7 @@ namespace Data.Migrations
                             LastName = "Jaber",
                             PasswordHash = "123",
                             RoleId = 1,
-                            UniverstityId = 1
+                            UniversityId = 1
                         });
                 });
 

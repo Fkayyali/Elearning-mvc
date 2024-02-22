@@ -65,8 +65,7 @@ namespace Data.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RoleId = table.Column<int>(type: "int", nullable: false),
-                    UniverstityId = table.Column<int>(type: "int", nullable: true),
-                    UniversityId = table.Column<int>(type: "int", nullable: true)
+                    UniversityId = table.Column<int>(type: "int", nullable: true),
                 },
                 constraints: table =>
                 {

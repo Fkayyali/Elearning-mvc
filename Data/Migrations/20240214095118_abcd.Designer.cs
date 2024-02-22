@@ -111,7 +111,7 @@ namespace Data.Migrations
                     b.Property<int?>("UniversityId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UniverstityId")
+                    b.Property<int?>("UniversityId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

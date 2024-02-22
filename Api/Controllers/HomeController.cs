@@ -33,9 +33,31 @@ namespace Api.Controllers
                 return  View();
             }
             var token = tokenService.CreateToken(user);
-            //CookieOptions cookie = new CookieOptions();
             Response.Cookies.Append("token", token);
             return Redirect("/courses");
+        }
+        [HttpGet("/register")]
+        public IActionResult Register()
+        {
+            var token = Request.Cookies["token"];
+            if (tokenService.IsTokenValid(token))
+            {
+                return Redirect("/courses");
+            }
+            return View();
+        }
+
+        [HttpPost("/register")]
+        public async Task<IActionResult> Register(RegisterDto registerDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await userRepo.AddUser(registerDto);
+                var token = tokenService.CreateToken(user);
+                Response.Cookies.Append("token", token);
+                return Redirect("/courses");
+            }
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
