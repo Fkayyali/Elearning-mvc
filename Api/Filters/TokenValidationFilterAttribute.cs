@@ -17,10 +17,8 @@ namespace Api.Filters
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            // Your token validation logic goes here
             if (tokenService != null && !tokenService.IsTokenValid(context.HttpContext.Request.Cookies["token"]))
             {
-                // If token is not valid, redirect to login page
                 context.Result = new RedirectResult("/");
             }
 
