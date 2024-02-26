@@ -8,13 +8,14 @@ namespace Api.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUserRepo userRepo;
+        private readonly IUserService userRepo;
         private readonly ITokenService tokenService;
-        public HomeController(IUserRepo userRepo, ITokenService tokenService)
+        public HomeController(IUserService userRepo, ITokenService tokenService)
         {
             this.userRepo = userRepo;
             this.tokenService = tokenService;
         }
+
         public IActionResult Index()
         {
             var token = Request.Cookies["token"];
@@ -36,6 +37,7 @@ namespace Api.Controllers
             Response.Cookies.Append("token", token);
             return Redirect("/courses");
         }
+
         [HttpGet("/register")]
         public IActionResult Register()
         {
@@ -50,7 +52,7 @@ namespace Api.Controllers
         [HttpPost("/register")]
         public async Task<IActionResult> Register(RegisterDto registerDto)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && registerDto.Password == registerDto.ConfirmPassword)
             {
                 var user = await userRepo.AddUser(registerDto);
                 var token = tokenService.CreateToken(user);

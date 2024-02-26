@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public interface IUserCourseRepo
+    public interface IUserCourseService
     {
         Task<UserCourse?> RemoveUserCourse(int userId, int courseId);
         Task<UserCourse> AddUserCourse(int userId, int courseId);

@@ -11,23 +11,26 @@ namespace Entity.DTOs
 {
     public class RegisterDto
     {
-        [Required]
+        [Required(ErrorMessage = "First Name can not be blank!")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Last Name can not be blank!")]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Email can not be blank!")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password can not be blank!")]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password can not be blank!")]
+        public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Role can not be blank!")]
         public int RoleId { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="University can not be blank!")]
         public int UniversityId { get; set; }
 
     }

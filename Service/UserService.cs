@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class UserRepo : IUserRepo
+    public class UserService : IUserService
     {
         private readonly ApplicationDBContext dBContext;
-        public UserRepo(ApplicationDBContext dbContext)
+        public UserService(ApplicationDBContext dbContext)
         {
             this.dBContext = dbContext;
         }

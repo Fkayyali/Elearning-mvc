@@ -9,13 +9,14 @@ using Service;
 
 namespace Api.Controllers
 {
+    [TypeFilter(typeof(TokenValidationFilterAttribute))]
     public class CourseController : Controller
     {
-        private readonly ICoursesRepo coursesRepo;
-        private readonly IUserRepo userRepo;
-        private readonly IUserCourseRepo userCourseRepo;
+        private readonly ICoursesService coursesRepo;
+        private readonly IUserService userRepo;
+        private readonly IUserCourseService userCourseRepo;
         private readonly ITokenService tokenService;
-        public CourseController(ICoursesRepo coursesRepo, IUserRepo userRepo, IUserCourseRepo userCourseRepo, ITokenService tokenService)
+        public CourseController(ICoursesService coursesRepo, IUserService userRepo, IUserCourseService userCourseRepo, ITokenService tokenService)
         {
             this.coursesRepo = coursesRepo;
             this.userRepo = userRepo;
@@ -23,7 +24,6 @@ namespace Api.Controllers
             this.tokenService = tokenService;
         }
 
-        [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpGet("/courses")]
         public async Task<IActionResult> UserCourses()
         {
@@ -35,7 +35,6 @@ namespace Api.Controllers
             return View(viewModel);
         }
 
-        [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpPost("/courses/add/{courseId}")]
         public async Task<IActionResult> Add(int courseId)
         {
@@ -46,7 +45,6 @@ namespace Api.Controllers
             return View(courses);
         }
 
-        [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpGet("/courses/add")]
         public async Task<IActionResult> Add()
         {
@@ -56,14 +54,12 @@ namespace Api.Controllers
             return View(courses);
         }
 
-        [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpGet("/courses/new")]
         public IActionResult New()
         {
             return View();
         }
 
-        [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpPost("/courses/new")]
         public async Task<IActionResult> New( AddNewCourseDto newCourseDto)
         {
@@ -73,7 +69,6 @@ namespace Api.Controllers
             return Redirect("/courses");
         }
 
-        [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpDelete("courses/{courseId}")]
         public async Task<IActionResult> Delete(int courseId)
         {
@@ -84,7 +79,6 @@ namespace Api.Controllers
             return Redirect("/courses");
         }
 
-        [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpGet("/courses/{courseId}/students")]
         public async Task<IActionResult> ViewStudents(int courseId)
         {
@@ -95,7 +89,6 @@ namespace Api.Controllers
             return View(viewModel);
         }
 
-        [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpDelete("/courses/{courseId}/students/{studentId}")]
         public async Task<IActionResult> ViewStudents(int courseId, int studentId)
         {
@@ -105,7 +98,6 @@ namespace Api.Controllers
             return View(viewModel);
         }
 
-        [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpGet("/courses/{courseId}/addStudent")]
         public async Task<IActionResult> AddStudent(int courseId)
         {
@@ -114,7 +106,6 @@ namespace Api.Controllers
             return View(viewModel);
         }
 
-        [TypeFilter(typeof(TokenValidationFilterAttribute))]
         [HttpPost("/courses/{courseId}/addStudent/{studentId}")]
         public async Task<IActionResult> AddStudent(int courseId, int studentId)
         {

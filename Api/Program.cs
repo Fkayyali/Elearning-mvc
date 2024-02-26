@@ -14,9 +14,9 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddScoped<ICoursesRepo, CoursesRepo>();
-builder.Services.AddScoped<IUserRepo, UserRepo>();
-builder.Services.AddScoped<IUserCourseRepo, UserCourseRepo>();
+builder.Services.AddScoped<ICoursesService, CoursesService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserCourseService, UserCourseService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
@@ -33,9 +33,14 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.MapWhen(context => context.Request.Path.StartsWithSegments("/courses"), builder =>
+{ 
+    builder.UseMiddleware<TokenValidationMiddleware>();
+});
 app.UseRouting();
 
 app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",

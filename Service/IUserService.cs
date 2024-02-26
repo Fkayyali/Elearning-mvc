@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public interface IUserRepo
+    public interface IUserService
     {
         Task<User?> GetUser(int userId);
         Task<User> AddUser(RegisterDto registerDto);

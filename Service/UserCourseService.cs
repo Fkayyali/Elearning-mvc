@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class UserCourseRepo : IUserCourseRepo
+    public class UserCourseService : IUserCourseService
     {
         private readonly ApplicationDBContext dBContext;
 
-        public UserCourseRepo(ApplicationDBContext dBContext) {
+        public UserCourseService(ApplicationDBContext dBContext) {
             this.dBContext = dBContext;
         }
         public async Task<UserCourse> AddUserCourse(int userId, int courseId)

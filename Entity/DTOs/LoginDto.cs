@@ -9,12 +9,12 @@ namespace Entity.DTOs
 {
     public class LoginDto
     {
-        [Required]
+        [Required(ErrorMessage = "Email can not be blank!")]
         [EmailAddress]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password can not be blank!")]
         [DataType(DataType.Password)]
-        public string? Password { get; set; }
+        public string Password { get; set; }
     }
 }

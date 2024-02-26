@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public interface ICoursesRepo
+    public interface ICoursesService
     {
         Task<List<CourseTeacherDto>> GetCourses(int userId);
         Task<List<CourseTeacherDto>> GetFilteredCourses(int userId);

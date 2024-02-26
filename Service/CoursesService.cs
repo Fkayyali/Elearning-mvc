@@ -11,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class CoursesRepo : ICoursesRepo
+    public class CoursesService : ICoursesService
     {
         private readonly ApplicationDBContext dBContext;
-        public CoursesRepo(ApplicationDBContext dbContext) {
+        public CoursesService(ApplicationDBContext dbContext) {
             this.dBContext = dbContext;
         }
 
